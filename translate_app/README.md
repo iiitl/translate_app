@@ -1,4 +1,4 @@
-# translate_app
+# Translator
 
 A new Flutter project.
 
