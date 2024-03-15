@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:translate_app/models/language.dart';
 import 'package:translate_app/services/service.dart';
 import 'dart:ui' as ui show Canvas, Paint, Path;
+
 // import 'package:get/get.dart';
 void main() {
-  runApp( MyApp());
+  runApp(MyApp());
 }
+
 List<Language> list = [
   Language(lang: 'es', language: "Spanish"),
   Language(lang: 'fr', language: "France"),
@@ -29,49 +31,50 @@ class MyApp extends StatefulWidget {
   @override
   State<MyApp> createState() => _MyAppState();
 }
-bool _iconBool=false;
 
-IconData _iconLight =Icons.wb_sunny;
-IconData _iconDark =Icons.nights_stay;
+bool _iconBool = false;
 
-ThemeData _lightTheme =ThemeData(
+IconData _iconLight = Icons.wb_sunny;
+IconData _iconDark = Icons.nights_stay;
+
+ThemeData _lightTheme = ThemeData(
   primarySwatch: Colors.amber,
   brightness: Brightness.light,
 );
 
-ThemeData _darkTheme =ThemeData(
+ThemeData _darkTheme = ThemeData(
   primarySwatch: Colors.red,
   brightness: Brightness.dark,
 );
-
 
 class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      theme:  _iconBool ? _darkTheme : _lightTheme,
+      theme: _iconBool ? _darkTheme : _lightTheme,
       home: Scaffold(
         appBar: AppBar(
-          title: const Text("Translator"),
+          title: const Text("Translator",style: TextStyle(
+              fontFamily: 'OstrichSans',
+            letterSpacing: 1,
+          ),),
           centerTitle: true,
-
           actions: [
-            IconButton(onPressed: (){
-              setState(() {
-                _iconBool=!_iconBool;
-              });
-            },
+            IconButton(
+              onPressed: () {
+                setState(() {
+                  _iconBool = !_iconBool;
+                });
+              },
               icon: Icon(_iconBool ? _iconDark : _iconLight),
             )
           ],
-
         ),
         body: LanguageTranslator(),
       ),
     );
   }
 }
-
 
 class LanguageTranslator extends StatefulWidget {
   const LanguageTranslator({super.key});
@@ -103,8 +106,10 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
               TextField(
                 decoration: InputDecoration(
                     hintText: 'Enter the text',
+
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
+
                 controller: _input,
                 onChanged: (value) {
                   _input.text = value;
@@ -169,7 +174,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                   child: isVisible
                       ? const Text(
                           "Convert",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 20, fontFamily: 'OstrichSans',letterSpacing: 1,),
                         )
                       : const CircularProgressIndicator(
                           color: Colors.white,
