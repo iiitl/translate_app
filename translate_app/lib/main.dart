@@ -69,8 +69,10 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 height: MediaQuery.of(context).size.height / 4,
               ),
               TextField(
+                style: TextStyle(fontFamily: 'Truculenta',fontWeight: FontWeight.w600,fontSize: 22),
                 decoration: InputDecoration(
                     hintText: 'Enter the text',
+                    hintStyle: TextStyle(fontFamily: 'Truculenta',fontWeight: FontWeight.w600,fontSize: 22),
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
                 controller: _input,
@@ -95,7 +97,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                     items: list.map<DropdownMenuItem<String>>((Language value) {
                       return DropdownMenuItem<String>(
                         value: value.lang,
-                        child: Text(value.language),
+                        child: Text(value.language,style: TextStyle(fontFamily: 'Truculenta',fontWeight: FontWeight.w600,fontSize: 22),),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -137,7 +139,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                   child: isVisible
                       ? const Text(
                           "Convert",
-                          style: TextStyle(fontSize: 20),
+                          style: TextStyle(fontSize: 25 ,fontFamily: 'MadimiOne', ),
                         )
                       : const CircularProgressIndicator(
                           color: Colors.white,
@@ -153,14 +155,14 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                   children: [
                     const Text(
                       "Result",
-                      style: TextStyle(fontSize: 20, color: Colors.green),
+                      style: TextStyle(fontSize: 22, color: Color.fromARGB(255, 5, 101, 120),fontWeight: FontWeight.bold),
                     ),
                     const SizedBox(
                       height: 8,
                     ),
                     Text(
                       result,
-                      style: const TextStyle(fontSize: 18),
+                      style: const TextStyle(fontSize: 20, color: Color.fromARGB(255, 222, 85, 0),fontStyle: FontStyle.italic , ),
                     ),
                   ],
                 ),
