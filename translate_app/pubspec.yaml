@@ -44,6 +44,7 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
   flutter_launcher_icons: "^0.13.1"
+  animated_splash_screen:
 
 flutter_launcher_icons:
   android: "launcher_icon"

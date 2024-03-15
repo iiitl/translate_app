@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:translate_app/models/language.dart';
 import 'package:translate_app/services/service.dart';
+import 'package:flutter/services.dart';
+
+// import 'package:translate_app/screens/splash_screen.dart';
 // import 'package:get/get.dart';
 
 void main() {
@@ -30,7 +33,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: LanguageTranslator(),
+      home: SplashScreen(),
     );
   }
 }
@@ -167,6 +170,85 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
               ),
             ],
           ),
+        ),
+      ),
+    );
+  }
+}
+
+
+
+
+
+
+
+
+
+class SplashScreen extends StatefulWidget {
+  const SplashScreen({super.key});
+
+  @override
+  State<SplashScreen> createState() => _SplashScreenState();
+}
+
+class _SplashScreenState extends State<SplashScreen> with SingleTickerProviderStateMixin {
+
+  @override
+  void initState() {
+    super.initState();
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+    Future.delayed(Duration(seconds: 2), () {
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (_) => LanguageTranslator()), // Navigate to LanguageTranslator screen
+      );
+    });
+  }
+
+  
+  @override
+  void dispose() {
+    SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual,overlays: SystemUiOverlay.values);
+    super.dispose();
+  }
+
+
+
+
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Container(
+        width: double.infinity,
+        decoration: const BoxDecoration(
+          gradient: LinearGradient( 
+            colors: [
+              Color.fromARGB(255, 252, 253, 254),
+              Color.fromARGB(255, 0, 0, 0),
+              // Colors.red,
+            ],
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+          ),
+        ),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: const[ 
+            Icon(
+              Icons.book,
+              size: 80,
+              color: Colors.white,
+            ),
+            SizedBox(height: 40),
+            Text(
+              'Welcome to Translate app',
+              style: TextStyle(
+                fontStyle: FontStyle.italic,
+                color: Colors.white,
+                fontSize: 32,
+              ),
+            ),
+          ],
         ),
       ),
     );
