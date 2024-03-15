@@ -1,8 +1,10 @@
+import 'package:Translator/services/service.dart';
 import 'package:flutter/material.dart';
 
-import 'package:translate_app/models/language.dart';
-import 'package:translate_app/services/service.dart';
+
 import 'dart:ui' as ui show Canvas, Paint, Path;
+
+import 'models/language.dart';
 
 // import 'package:get/get.dart';
 void main() {
