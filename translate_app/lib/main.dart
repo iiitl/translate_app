@@ -23,17 +23,55 @@ List<Language> list = [
   Language(lang: "hi", language: "Hindi")
 ];
 
-class MyApp extends StatelessWidget {
-  MyApp({super.key});
+class MyApp extends StatefulWidget {
+  const MyApp({super.key});
 
   @override
+  State<MyApp> createState() => _MyAppState();
+}
+bool _iconBool=false;
+
+IconData _iconLight =Icons.wb_sunny;
+IconData _iconDark =Icons.nights_stay;
+
+ThemeData _lightTheme =ThemeData(
+  primarySwatch: Colors.amber,
+  brightness: Brightness.light,
+);
+
+ThemeData _darkTheme =ThemeData(
+  primarySwatch: Colors.red,
+  brightness: Brightness.dark,
+);
+
+
+class _MyAppState extends State<MyApp> {
+  @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: LanguageTranslator(),
+    return MaterialApp(
+      theme:  _iconBool ? _darkTheme : _lightTheme,
+      home: Scaffold(
+        appBar: AppBar(
+          title: const Text("Translator"),
+          centerTitle: true,
+
+          actions: [
+            IconButton(onPressed: (){
+              setState(() {
+                _iconBool=!_iconBool;
+              });
+            },
+              icon: Icon(_iconBool ? _iconDark : _iconLight),
+            )
+          ],
+
+        ),
+        body: LanguageTranslator(),
+      ),
     );
   }
 }
+
 
 class LanguageTranslator extends StatefulWidget {
   const LanguageTranslator({super.key});
@@ -54,12 +92,6 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: const Text("Translator"),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 44, 37, 230),
-      ),
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 15),
