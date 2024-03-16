@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:translate_app/models/language.dart';
 import 'package:translate_app/services/service.dart';
 // import 'package:get/get.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 void main() {
   runApp(MyApp());
@@ -30,6 +32,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en'), // English
+        Locale('es'), // Spanish
+      ],
       home: LanguageTranslator(),
     );
   }
@@ -55,7 +67,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Translator"),
+        title: Text(AppLocalizations.of(context)!.apTitle),
         centerTitle: true,
         elevation: 0,
         backgroundColor: const Color.fromARGB(255, 44, 37, 230),
@@ -70,7 +82,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
               ),
               TextField(
                 decoration: InputDecoration(
-                    hintText: 'Enter the text',
+                    hintText: AppLocalizations.of(context)!.boxTitle,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
                 controller: _input,
@@ -85,8 +97,8 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
               DecoratedBox(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    border:
-                        Border.all(color: const Color.fromARGB(136, 60, 60, 60))),
+                    border: Border.all(
+                        color: const Color.fromARGB(136, 60, 60, 60))),
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -135,8 +147,8 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                         MaterialStateProperty.all<Color>(Colors.white),
                   ),
                   child: isVisible
-                      ? const Text(
-                          "Convert",
+                      ? Text(
+                          AppLocalizations.of(context)!.convertBtn,
                           style: TextStyle(fontSize: 20),
                         )
                       : const CircularProgressIndicator(
@@ -151,8 +163,8 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 visible: result.isNotEmpty,
                 child: Column(
                   children: [
-                    const Text(
-                      "Result",
+                    Text(
+                      AppLocalizations.of(context)!.result,
                       style: TextStyle(fontSize: 20, color: Colors.green),
                     ),
                     const SizedBox(
