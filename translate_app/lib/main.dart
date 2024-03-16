@@ -85,8 +85,8 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
               DecoratedBox(
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
-                    border:
-                        Border.all(color: const Color.fromARGB(136, 60, 60, 60))),
+                    border: Border.all(
+                        color: const Color.fromARGB(136, 60, 60, 60))),
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
