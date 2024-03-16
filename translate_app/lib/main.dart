@@ -75,10 +75,8 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                         borderRadius: BorderRadius.circular(5))),
                 controller: _input,
                 onChanged: (value) {
-                  
                   setState(() {
-                    
-                  print(_input.text);
+                    print(_input.text);
                   });
                 },
               ),
