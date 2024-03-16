@@ -1,10 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:translate_app/models/language.dart';
 import 'package:translate_app/services/service.dart';
-// import 'package:get/get.dart';
+import 'package:flutter/src/material/icons.dart';
+import 'package:get/get.dart';
+// import 'package:translate_app/theme/theme.dart';
+import 'package:translate_app/theme/theme.dart';
+import 'package:translate_app/theme/theme_provider.dart';
 
 void main() {
-  runApp(MyApp());
+  runApp(ChangeNotifierProvider(
+    create: (context) => ThemeProvider(),
+    child: const MyApp(),
+  ));
 }
 
 List<Language> list = [
@@ -24,13 +32,14 @@ List<Language> list = [
 ];
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  const MyApp({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LanguageTranslator(),
+      theme: Provider.of<ThemeProvider>(context).themeData,
     );
   }
 }
@@ -54,12 +63,25 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Theme.of(context).colorScheme.background,
       appBar: AppBar(
-        title: const Text("Translator"),
-        centerTitle: true,
-        elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 44, 37, 230),
-      ),
+  title: const Text("Translator"),
+  centerTitle: true,
+  elevation: 0,
+  backgroundColor: Theme.of(context).colorScheme.secondary,
+  actions: [
+    IconButton(
+      icon: Icon(Icons.lightbulb), 
+      onPressed: () {
+        Provider.of<ThemeProvider>(context,listen: false).toggleTheme();
+      },
+    ),
+
+
+    
+  ],
+)
+,
       body: SingleChildScrollView(
         child: Container(
           margin: const EdgeInsets.symmetric(horizontal: 15),
@@ -70,9 +92,22 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
               ),
               TextField(
                 decoration: InputDecoration(
-                    hintText: 'Enter the text',
-                    border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
+                  hintText: 'Entere the text',
+                  hintStyle: TextStyle(
+                    color: Theme.of(context).colorScheme.tertiary,
+                  ), 
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(5),
+                    borderSide:  const BorderSide(
+                      color: Color.fromARGB(255, 255, 255, 255), 
+                      
+                      width: 12.0, 
+                    ),
+                  ),
+                ),
+                style: TextStyle(
+                    
+                        color: Theme.of(context).colorScheme.tertiary, ),
                 controller: _input,
                 onChanged: (value) {
                   _input.text = value;
@@ -86,7 +121,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(5),
                     border:
-                        Border.all(color: const Color.fromARGB(136, 60, 60, 60))),
+                        Border.all(color: Theme.of(context).colorScheme.tertiary,)),
                 child: Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
@@ -95,7 +130,11 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                     items: list.map<DropdownMenuItem<String>>((Language value) {
                       return DropdownMenuItem<String>(
                         value: value.lang,
-                        child: Text(value.language),
+                        child: Text(
+                          value.language,
+                          style: TextStyle(
+                              color: Theme.of(context).colorScheme.tertiary,),
+                        ),
                       );
                     }).toList(),
                     onChanged: (value) {
@@ -104,7 +143,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                       });
                       print(lang);
                     },
-                    underline: Container(), //remove underline
+                    underline: Container(), 
                     isExpanded: true,
                   ),
                 ),
@@ -130,7 +169,8 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(255, 44, 37, 230)),
+                      Theme.of(context).colorScheme.secondary,
+                    ),
                     foregroundColor:
                         MaterialStateProperty.all<Color>(Colors.white),
                   ),
