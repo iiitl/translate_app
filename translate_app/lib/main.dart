@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:translate_app/models/language.dart';
 import 'package:translate_app/services/service.dart';
-// import 'package:get/get.dart';
 
 void main() {
   runApp(MyApp());
@@ -24,11 +23,11 @@ List<Language> list = [
 ];
 
 class MyApp extends StatelessWidget {
-  MyApp({super.key});
+  MyApp({Key? key});
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LanguageTranslator(),
     );
@@ -36,20 +35,23 @@ class MyApp extends StatelessWidget {
 }
 
 class LanguageTranslator extends StatefulWidget {
-  const LanguageTranslator({super.key});
+  LanguageTranslator({Key? key}) : super(key: key);
 
   @override
-  State<LanguageTranslator> createState() => _LanguageTranslatorState();
+  _LanguageTranslatorState createState() => _LanguageTranslatorState();
 }
 
 class _LanguageTranslatorState extends State<LanguageTranslator> {
-  final _input = TextEditingController();
-
+  final TextEditingController _input = TextEditingController();
   String lang = list.first.lang;
-
   String result = "";
-
   bool isVisible = true;
+
+  @override
+  void dispose() {
+    _input.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -74,10 +76,6 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
                 controller: _input,
-                onChanged: (value) {
-                  _input.text = value;
-                  print(_input.text);
-                },
               ),
               const SizedBox(
                 height: 10,
@@ -170,5 +168,19 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
         ),
       ),
     );
+  }
+}
+
+class Language {
+  final String lang;
+  final String language;
+
+  Language({required this.lang, required this.language});
+}
+
+class Service {
+  Future<String> translateText(String text, String lang) async {
+    // Replace this with your actual translation service implementation
+    return Future.delayed(const Duration(seconds: 2), () => "Translated: $text to $lang");
   }
 }
