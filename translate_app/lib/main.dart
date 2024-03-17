@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:Translator/models/language.dart';
 import 'package:Translator/services/service.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 // import 'package:get/get.dart';
 
 void main() {
@@ -31,6 +33,16 @@ class MyApp extends StatelessWidget {
     return const MaterialApp(
       debugShowCheckedModeBanner: false,
       home: LanguageTranslator(),
+      localizationsDelegates: [
+        AppLocalizations.delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ],
+      supportedLocales: [
+        Locale('en'), // English
+        Locale('es'), // Spanish
+      ],
     );
   }
 }
@@ -55,7 +67,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Translator"),
+        title: Text(AppLocalizations.of(context)!.translator),
         centerTitle: true,
         elevation: 0,
         backgroundColor: const Color.fromARGB(255, 44, 37, 230),
@@ -70,7 +82,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
               ),
               TextField(
                 decoration: InputDecoration(
-                    hintText: 'Enter the text',
+                    hintText: AppLocalizations.of(context)!.entertthetext,
                     border: OutlineInputBorder(
                         borderRadius: BorderRadius.circular(5))),
                 controller: _input,
@@ -134,8 +146,8 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                         MaterialStateProperty.all<Color>(Colors.white),
                   ),
                   child: isVisible
-                      ? const Text(
-                          "Convert",
+                      ? Text(
+                          AppLocalizations.of(context)!.convert,
                           style: TextStyle(fontSize: 20),
                         )
                       : const CircularProgressIndicator(
@@ -150,8 +162,8 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 visible: result.isNotEmpty,
                 child: Column(
                   children: [
-                    const Text(
-                      "Result",
+                    Text(
+                      AppLocalizations.of(context)!.result,
                       style: TextStyle(fontSize: 20, color: Colors.green),
                     ),
                     const SizedBox(
