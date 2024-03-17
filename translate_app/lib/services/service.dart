@@ -10,7 +10,9 @@ class Service {
     };
 
     final data =
-        '{\n  "source": "en",\n  "target": "es",\n  "text": "hello",\n  "proxies": []\n}';
+        '{\n  "source": "en",\n  "target": "${lang}",\n  "text": "${text}",\n  "proxies": []\n}';
+
+    print(data);
 
     final url =
         Uri.parse('https://deep-translator-api.azurewebsites.net/mymemory/');
