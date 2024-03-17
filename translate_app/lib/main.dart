@@ -58,24 +58,46 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Translator"),
+        title: const Text("Translator",
+        style: TextStyle(
+                color: Color.fromARGB(255, 255, 255, 255),
+                fontFamily: 'Alata-Regular',
+                fontSize: 25,
+              ),
+        ),
+     
         centerTitle: true,
         elevation: 0,
-        backgroundColor: const Color.fromARGB(255, 44, 37, 230),
-      ),
+        backgroundColor: Color.fromRGBO(11, 41, 235, 0.976),
+
+        ),
       body: SingleChildScrollView(
         child: Container(
+      
           margin: const EdgeInsets.symmetric(horizontal: 15),
+          
           child: Column(
+                
             children: <Widget>[
+              // Row(
+              //   mainAxisAlignment: MainAxisAlignment.end,
+              //   children: [Text(
+              //     "Row HELLO", 
+              //     style: TextStyle(
+              //   color: const Color.fromARGB(255, 0, 0, 0),
+              //   fontFamily: 'UbuntuMono-Regular',
+              //   fontSize: 32,
+              // ),
+              //   )],),
+              
               SizedBox(
                 height: MediaQuery.of(context).size.height / 4,
               ),
               TextField(
-                decoration: InputDecoration(
+                                decoration: InputDecoration(
                     hintText: 'Enter the text',
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(5))),
+                        borderRadius: BorderRadius.circular(3))),
                 controller: _input,
                 onChanged: (value) {
                   _input.text = value;
@@ -83,11 +105,11 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 },
               ),
               const SizedBox(
-                height: 10,
+                height: 25,
               ),
               DecoratedBox(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(5),
+                    borderRadius: BorderRadius.circular(3),
                     border:
                         Border.all(color: const Color.fromARGB(136, 60, 60, 60))),
                 child: Padding(
@@ -113,10 +135,10 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 ),
               ),
               const SizedBox(
-                height: 10,
+                height: 25,
               ),
               SizedBox(
-                width: double.infinity,
+                width: 180,
                 height: 50,
                 child: TextButton(
                   onPressed: () async {
@@ -133,7 +155,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        const Color.fromARGB(255, 44, 37, 230)),
+                        Color.fromRGBO(11, 41, 235, 0.976)),
                     foregroundColor:
                         MaterialStateProperty.all<Color>(Colors.white),
                   ),
@@ -148,7 +170,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 ),
               ),
               const SizedBox(
-                height: 20,
+                height: 0,
               ),
               Visibility(
                 visible: result.isNotEmpty,
