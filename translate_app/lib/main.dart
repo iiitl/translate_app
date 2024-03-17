@@ -68,7 +68,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
      
         centerTitle: true,
         elevation: 0,
-        backgroundColor: Color.fromRGBO(11, 41, 235, 0.976),
+        backgroundColor: Color.fromRGBO(23, 129, 62, 0.973),
 
         ),
       body: SingleChildScrollView(
@@ -79,37 +79,33 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
           child: Column(
                 
             children: <Widget>[
-              // Row(
-              //   mainAxisAlignment: MainAxisAlignment.end,
-              //   children: [Text(
-              //     "Row HELLO", 
-              //     style: TextStyle(
-              //   color: const Color.fromARGB(255, 0, 0, 0),
-              //   fontFamily: 'UbuntuMono-Regular',
-              //   fontSize: 32,
-              // ),
-              //   )],),
+              
               
               SizedBox(
                 height: MediaQuery.of(context).size.height / 4,
               ),
               TextField(
-                                decoration: InputDecoration(
+                    decoration: InputDecoration(
                     hintText: 'Enter the text',
+              
+            
+              
                     border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(3))),
+
+                        borderRadius: BorderRadius.circular(100))),
                 controller: _input,
                 onChanged: (value) {
                   _input.text = value;
                   print(_input.text);
                 },
+                
               ),
               const SizedBox(
                 height: 25,
               ),
               DecoratedBox(
                 decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(3),
+                    borderRadius: BorderRadius.circular(30),
                     border:
                         Border.all(color: const Color.fromARGB(136, 60, 60, 60))),
                 child: Padding(
@@ -138,7 +134,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 height: 25,
               ),
               SizedBox(
-                width: 180,
+                width: 150,
                 height: 50,
                 child: TextButton(
                   onPressed: () async {
@@ -155,7 +151,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                   },
                   style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(
-                        Color.fromRGBO(11, 41, 235, 0.976)),
+                        Color.fromRGBO(23, 129, 62, 0.973)),
                     foregroundColor:
                         MaterialStateProperty.all<Color>(Colors.white),
                   ),
@@ -170,7 +166,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                 ),
               ),
               const SizedBox(
-                height: 0,
+                height: 70,
               ),
               Visibility(
                 visible: result.isNotEmpty,
@@ -178,7 +174,7 @@ class _LanguageTranslatorState extends State<LanguageTranslator> {
                   children: [
                     const Text(
                       "Result",
-                      style: TextStyle(fontSize: 20, color: Colors.green),
+                      style: TextStyle(fontSize: 20, color: Color.fromARGB(255, 255, 0, 0)),
                     ),
                     const SizedBox(
                       height: 8,
