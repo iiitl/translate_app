@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:translate_app/models/language.dart';
 import 'package:translate_app/services/service.dart';
 
+
 void main() {
   runApp(MyApp());
 }
@@ -29,6 +30,14 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
+       theme: ThemeData(
+        textTheme: TextTheme(
+          // Set the font family to a monospace font
+          bodyText1: TextStyle(fontFamily: 'monospace'),
+          bodyText2: TextStyle(fontFamily: 'monospace'),
+          // You can set other text styles to monospace if needed
+        ),
+      ),
       home: LanguageTranslator(),
     );
   }
