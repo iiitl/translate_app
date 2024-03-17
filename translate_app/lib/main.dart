@@ -27,10 +27,13 @@ List<Language> list = [
 
 class MyApp extends StatelessWidget {
   MyApp({super.key});
-
+  final ThemeMode _themeMode = ThemeMode.system;
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
+    return MaterialApp(
+      theme: ThemeData(primarySwatch: Colors.green),
+      darkTheme: ThemeData.dark(),
+      themeMode: _themeMode,
       debugShowCheckedModeBanner: false,
       home: LanguageTranslator(),
       localizationsDelegates: [
